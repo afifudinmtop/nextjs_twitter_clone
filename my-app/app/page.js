@@ -2,7 +2,7 @@
 
 export default function Page() {
   return (
-    <div className="h-screen p-[15px] overflow-x-auto">
+    <div className="h-screen p-[15px] overflow-y-auto">
       <div className="p-[19px]">
         {/* logo */}
         <img src="/landing/twitter.png" className="w-[42px] h-[53px]" />

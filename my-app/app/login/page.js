@@ -10,7 +10,7 @@ export default function Page() {
     <div className="h-screen overflow-y-auto relative">
       <Header />
 
-      <div className="px-[30px] fixed top-[50%] translate-y-[-50%] w-full">
+      <div className="px-[30px] fixed top-[50%] translate-y-[-50%] w-screen lg:w-[375px]">
         <div className="text-[25px] font-bold text-[#0f1419] my-[19px]">
           Sign in to X
         </div>

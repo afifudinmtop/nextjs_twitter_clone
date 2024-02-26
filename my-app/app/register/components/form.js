@@ -43,8 +43,10 @@ export default function Form() {
       </div>
 
       {/* button register */}
-      <div className="fixed translate-x-[-50%] mx-auto left-[50%] bottom-[23px] w-[80%] text-center bg-[#0f1419] text-white text-[16px] font-bold rounded-[9999px] py-[12px]">
-        Next
+      <div className="fixed bottom-[23px] left-[50%] translate-x-[-50%] w-screen lg:w-[375px]">
+        <div className="w-[80%] mx-auto text-center bg-[#0f1419] text-white text-[16px] font-bold rounded-[9999px] py-[12px]">
+          Next
+        </div>
       </div>
     </div>
   );

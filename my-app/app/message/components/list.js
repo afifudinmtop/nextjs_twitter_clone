@@ -1,9 +1,9 @@
 "use client";
 
-export default function Feed(props) {
+export default function List(props) {
   const dummy = props.dummy;
   return (
-    <div className="pt-[60px] pb-[50px]">
+    <div className="">
       {dummy.map((dummy) => (
         <div key={dummy.uuid} className="border-b p-[15px] flex">
           <img
@@ -23,17 +23,10 @@ export default function Feed(props) {
               <img src="/home/more.svg" className="w-[18px] h-[18px] my-auto" />
             </div>
 
-            {/* caption */}
+            {/* message */}
             <div className="text-[14px] text-[#0f1419] leading-[19px]">
-              {dummy.caption}
+              {dummy.message}
             </div>
-
-            {dummy.image && (
-              <img
-                src={`/dummy/${dummy.image}`}
-                className="w-full rounded-[16px] mt-[11px]"
-              />
-            )}
           </div>
         </div>
       ))}

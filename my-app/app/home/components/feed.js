@@ -3,7 +3,7 @@
 export default function Feed(props) {
   const dummy = props.dummy;
   return (
-    <div className="pt-[60px]">
+    <div className="pt-[60px] pb-[50px]">
       {dummy.map((dummy) => (
         <div key={dummy.uuid} className="border-b p-[15px] flex">
           <img

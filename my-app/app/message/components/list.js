@@ -2,10 +2,21 @@
 
 export default function List(props) {
   const dummy = props.dummy;
+
+  const dm = (uuid) => {
+    window.location.href = `/message/${uuid}`;
+  };
+
   return (
     <div className="">
       {dummy.map((dummy) => (
-        <div key={dummy.uuid} className="border-b p-[15px] flex">
+        <div
+          key={dummy.uuid}
+          onClick={() => {
+            dm(dummy.uuid);
+          }}
+          className="border-b p-[15px] flex"
+        >
           <img
             src={`/dummy/${dummy.avatar}`}
             className="w-[38px] h-[38px] rounded-full me-[8px]"

@@ -1,21 +1,32 @@
 "use client";
 
 export default function Page() {
+  const masuk = () => {
+    window.location.href = "/login/";
+  };
+
+  const register = () => {
+    window.location.href = "/register/";
+  };
+
   return (
     <div className="h-screen p-[15px] overflow-y-auto">
       <div className="p-[19px]">
         {/* logo */}
         <img src="/landing/twitter.png" className="w-[42px] h-[53px]" />
+
         {/* tren */}
         <div className="text-[38px] text-[#0f1419] font-bold leading-[49px] my-[38px] tracking-[-0.8px]">
           Sedang tren
           <br />
           saat ini
         </div>
+
         {/* Bergabunglah sekarang. */}
         <div className="text-[#0f1419] text-[22px] font-bold mb-[19px]">
           Bergabunglah sekarang.
         </div>
+
         {/* Google */}
         <div className="flex justify-center px-[15px] border border-[#cfd9de] rounded-[9999px] h-[36px] mb-[8px]">
           <img
@@ -26,6 +37,7 @@ export default function Page() {
             Daftar dengan Google
           </div>
         </div>
+
         {/* Apple */}
         <div className="flex justify-center px-[15px] border border-[#cfd9de] rounded-[9999px] h-[36px]">
           <img
@@ -36,11 +48,15 @@ export default function Page() {
             Daftar dengan Apple
           </div>
         </div>
+
         {/* atau */}
         <div className="text-center text-[14px] my-[8px]">atau</div>
 
         {/* buat akun */}
-        <div className="bg-[#1d9bf0]  rounded-[9999px] h-[36px] align-middle flex justify-center mb-[8px]">
+        <div
+          onClick={register}
+          className="bg-[#1d9bf0]  rounded-[9999px] h-[36px] align-middle flex justify-center mb-[8px]"
+        >
           <div className="my-auto text-center text-white font-bold">
             Buat akun
           </div>
@@ -64,8 +80,11 @@ export default function Page() {
           Sudah punya akun?
         </div>
 
-        {/* buat akun */}
-        <div className="bg-white rounded-[9999px] h-[36px] align-middle flex justify-center mb-[8px] border-[#cfd9de] border">
+        {/* Masuk */}
+        <div
+          onClick={masuk}
+          className="bg-white rounded-[9999px] h-[36px] align-middle flex justify-center mb-[8px] border-[#cfd9de] border"
+        >
           <div className="my-auto text-center text-[#1d9bf0] font-bold">
             Masuk
           </div>

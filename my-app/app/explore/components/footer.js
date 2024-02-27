@@ -22,14 +22,14 @@ export default function Footer() {
       {/* home */}
       <img
         onClick={home}
-        src="/footer/home_bold.svg"
+        src="/footer/home.svg"
         className="w-[25px] h-[25px]"
       />
 
       {/* explore */}
       <img
         onClick={explore}
-        src="/footer/search.svg"
+        src="/footer/search_bold.svg"
         className="w-[25px] h-[25px]"
       />
 

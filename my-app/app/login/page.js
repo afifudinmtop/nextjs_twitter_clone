@@ -6,6 +6,10 @@ import Button from "./components/button";
 import Form from "./components/form";
 
 export default function Page() {
+  const register = () => {
+    window.location.href = "/register/";
+  };
+
   return (
     <div className="h-screen overflow-y-auto relative">
       <Header />
@@ -27,7 +31,9 @@ export default function Page() {
         {/* sign up */}
         <div className="mt-[38px] text-[14px]">
           <span className="text-[#536471]">Don't have an account? </span>
-          <span className="text-[#1d9bf0]">Sign up</span>
+          <span onClick={register} className="text-[#1d9bf0]">
+            Sign up
+          </span>
         </div>
       </div>
     </div>

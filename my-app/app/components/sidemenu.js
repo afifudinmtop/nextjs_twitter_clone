@@ -12,7 +12,150 @@ export default function Sidemenu(props) {
         onClick={hide_sidemenu}
         className="bg-[#00000066] fixed top-0 left-0 h-screen w-screen lg:w-[375px] z-[100]"
       ></div>
-      <div className="fixed top-0 left-0 h-screen w-[300px] lg:w-[300px] z-[200] bg-white"></div>
+      {/* main */}
+      <div className="fixed top-0 left-0 h-screen w-[300px] lg:w-[300px] z-[200] bg-white">
+        {/* header */}
+        <div className="p-[16px]">
+          <div className="flex justify-between mb-[8px]">
+            {/* foto */}
+            <img
+              src="/home/avatar.jpg"
+              className="w-[40px] h-[40px] rounded-full"
+            />
+
+            {/* plus */}
+            <div className="p-[6px] border rounded-full border-[#cfd9de] my-auto">
+              <img src="/sidemenu/plus.svg" className="w-[18px] h-[18px]" />
+            </div>
+          </div>
+
+          {/* name */}
+          <div className="text-[17px] font-bold text-[#0f1419]">
+            Afifudin Maarif
+          </div>
+
+          {/* username */}
+          <div className="text-[#536471] text-[15px]">@afifudin_maarif</div>
+
+          {/* stats */}
+          <div className="flex mt-[12px] gap-[20px]">
+            {/* Following */}
+            <div className="flex">
+              <div className="font-bold text-[#0f1419] my-auto me-1">7</div>
+              <div className="text-[#536471] text-[14px] my-auto">
+                Following
+              </div>
+            </div>
+
+            {/* Followers */}
+            <div className="flex">
+              <div className="font-bold text-[#0f1419] my-auto me-1">12</div>
+              <div className="text-[#536471] text-[14px] my-auto">
+                Followers
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Profile */}
+        <div className="flex p-[16px]">
+          <img
+            src="/sidemenu/profile.svg"
+            className="w-[24px] h-[24px] me-[24px] my-auto"
+          />
+          <div className="text-[#0f1419] font-bold text-[20px] my-auto">
+            Profile
+          </div>
+        </div>
+
+        {/* Premium */}
+        <div className="flex p-[16px]">
+          <img
+            src="/sidemenu/premium.svg"
+            className="w-[24px] h-[24px] me-[24px] my-auto"
+          />
+          <div className="text-[#0f1419] font-bold text-[20px] my-auto">
+            Premium
+          </div>
+        </div>
+
+        {/* Lists */}
+        <div className="flex p-[16px]">
+          <img
+            src="/sidemenu/lists.svg"
+            className="w-[24px] h-[24px] me-[24px] my-auto"
+          />
+          <div className="text-[#0f1419] font-bold text-[20px] my-auto">
+            Lists
+          </div>
+        </div>
+
+        {/* Bookmarks */}
+        <div className="flex p-[16px]">
+          <img
+            src="/sidemenu/bookmarks.svg"
+            className="w-[24px] h-[24px] me-[24px] my-auto"
+          />
+          <div className="text-[#0f1419] font-bold text-[20px] my-auto">
+            Bookmarks
+          </div>
+        </div>
+
+        {/* Communities */}
+        <div className="flex p-[16px]">
+          <img
+            src="/sidemenu/communities.svg"
+            className="w-[24px] h-[24px] me-[24px] my-auto"
+          />
+          <div className="text-[#0f1419] font-bold text-[20px] my-auto">
+            Communities
+          </div>
+        </div>
+
+        {/* Monetization */}
+        <div className="flex p-[16px]">
+          <img
+            src="/sidemenu/monetization.svg"
+            className="w-[24px] h-[24px] me-[24px] my-auto"
+          />
+          <div className="text-[#0f1419] font-bold text-[20px] my-auto">
+            Monetization
+          </div>
+        </div>
+
+        {/* Ads */}
+        <div className="flex p-[16px]">
+          <img
+            src="/sidemenu/ads.svg"
+            className="w-[24px] h-[24px] me-[24px] my-auto"
+          />
+          <div className="text-[#0f1419] font-bold text-[20px] my-auto">
+            Ads
+          </div>
+        </div>
+
+        {/* Settings and privacy */}
+        <div className="flex p-[16px]">
+          <img
+            src="/sidemenu/settings.svg"
+            className="w-[24px] h-[24px] me-[24px] my-auto"
+          />
+          <div className="text-[#0f1419] font-bold text-[20px] my-auto">
+            Settings and privacy
+          </div>
+        </div>
+
+        {/* Log out */}
+        <div className="flex p-[16px]">
+          <img
+            src="/sidemenu/logout.svg"
+            className="w-[24px] h-[24px] me-[24px] my-auto"
+          />
+          <div className="text-[#0f1419] font-bold text-[20px] my-auto">
+            Log out
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

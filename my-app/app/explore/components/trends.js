@@ -3,6 +3,10 @@
 export default function Trends(props) {
   const dummy = props.dummy;
 
+  const cari = (x) => {
+    window.location.href = "/search/";
+  };
+
   return (
     <div className="pt-[75px] px-[16px]">
       <div className="text-[20px] font-extrabold text-[#0f1419]">
@@ -10,7 +14,13 @@ export default function Trends(props) {
       </div>
 
       {dummy.map((dummy, index) => (
-        <div key={dummy.uuid} className="py-[12px]">
+        <div
+          key={dummy.uuid}
+          onClick={() => {
+            cari(dummy.trend);
+          }}
+          className="py-[12px]"
+        >
           {/* header */}
           <div className="flex justify-between">
             {/* number */}

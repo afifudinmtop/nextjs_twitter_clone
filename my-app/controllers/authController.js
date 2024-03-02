@@ -17,7 +17,16 @@ const login = async (req, res) => {
         } else {
           const resultx = bcrypt.compareSync(password, results[0].password);
           if (resultx) {
-            req.session.user = { uuid: results[0].uuid, isLoggedIn: true };
+            const gambar = results[0].gambar;
+            const nama = results[0].nama;
+
+            req.session.user = {
+              nama: nama,
+              gambar: gambar,
+              username: username,
+              uuid: results[0].uuid,
+              isLoggedIn: true,
+            };
             return res.json({ pesan: "sukses!" });
           } else {
             return res.json({ pesan: "wrong password!" });

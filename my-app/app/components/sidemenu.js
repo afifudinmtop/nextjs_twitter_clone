@@ -1,8 +1,44 @@
 "use client";
+import { useState, useEffect } from "react";
 
 export default function Sidemenu(props) {
   let visibility = props.visibility;
   let hide_sidemenu = props.hide_sidemenu;
+
+  const [username, set_username] = useState("");
+  const [nama, set_nama] = useState("");
+  const [gambar, set_gambar] = useState("");
+
+  useEffect(() => {
+    cek_login();
+  }, []);
+
+  const cek_login = () => {
+    fetch("/api/auth/session", {
+      method: "GET",
+      cache: "no-store",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            "Network response was not ok: " + response.statusText
+          );
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.user.isLoggedIn) {
+          set_username(data.user.username);
+          set_nama(data.user.nama);
+          set_gambar(data.user.gambar);
+        } else {
+          return (window.location.href = "/login/");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
+  };
 
   const logout = () => {
     window.location.href = "/api/auth/logout";
@@ -22,10 +58,7 @@ export default function Sidemenu(props) {
         <div className="p-[16px]">
           <div className="flex justify-between mb-[8px]">
             {/* foto */}
-            <img
-              src="/home/avatar.jpg"
-              className="w-[40px] h-[40px] rounded-full"
-            />
+            <img src={gambar} className="w-[40px] h-[40px] rounded-full" />
 
             {/* plus */}
             <div className="p-[6px] border rounded-full border-[#cfd9de] my-auto">
@@ -34,12 +67,10 @@ export default function Sidemenu(props) {
           </div>
 
           {/* name */}
-          <div className="text-[17px] font-bold text-[#0f1419]">
-            Afifudin Maarif
-          </div>
+          <div className="text-[17px] font-bold text-[#0f1419]">{nama}</div>
 
           {/* username */}
-          <div className="text-[#536471] text-[15px]">@afifudin_maarif</div>
+          <div className="text-[#536471] text-[15px]">@{username}</div>
 
           {/* stats */}
           <div className="flex mt-[12px] gap-[20px]">

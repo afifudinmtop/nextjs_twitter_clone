@@ -1,15 +1,12 @@
 "use client";
 
-export default function Button() {
-  const home = () => {
-    window.location.href = "/home/";
-  };
-
+export default function Button(props) {
+  const upload_data = props.upload_data;
   return (
     <div>
       {/* Next */}
       <div
-        onClick={home}
+        onClick={upload_data}
         className="bg-[#0f1419] rounded-[9999px] h-[36px] align-middle flex justify-center mb-[22px]"
       >
         <div className="my-auto text-center text-white font-bold">Next</div>

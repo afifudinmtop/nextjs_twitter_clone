@@ -2,7 +2,6 @@
 
 import Header from "./components/header";
 import Sosmed from "./components/sosmed";
-import Button from "./components/button";
 import Form from "./components/form";
 
 export default function Page() {
@@ -25,8 +24,6 @@ export default function Page() {
         <div className="text-center text-[14px] my-[22px]">atau</div>
 
         <Form />
-
-        <Button />
 
         {/* sign up */}
         <div className="mt-[38px] text-[14px]">

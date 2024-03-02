@@ -42,7 +42,7 @@ const register = async (req, res) => {
 
     // check existing username
     pool.query(
-      "SELECT * FROM user WHERE username = ? AND email = ?",
+      "SELECT * FROM user WHERE username = ? OR email = ?",
       [username, email],
       (error, results, fields) => {
         if (results.length > 0) {

@@ -4,6 +4,10 @@ export default function Sidemenu(props) {
   let visibility = props.visibility;
   let hide_sidemenu = props.hide_sidemenu;
 
+  const logout = () => {
+    window.location.href = "/api/auth/logout";
+  };
+
   return (
     <div
       className={`${visibility} fixed top-0 left-[50%] translate-x-[-50%] h-screen w-screen lg:w-[375px] z-[100]`}
@@ -146,7 +150,7 @@ export default function Sidemenu(props) {
         </div>
 
         {/* Log out */}
-        <div className="flex p-[16px]">
+        <div onClick={logout} className="flex p-[16px]">
           <img
             src="/sidemenu/logout.svg"
             className="w-[24px] h-[24px] me-[24px] my-auto"

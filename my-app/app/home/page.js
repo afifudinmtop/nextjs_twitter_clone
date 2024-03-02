@@ -2,6 +2,7 @@
 import { useState } from "react";
 
 import Sidemenu from "../components/sidemenu";
+import New from "../components/new";
 import Header from "./components/header";
 import Feed from "./components/feed";
 import Footer from "./components/footer";
@@ -24,6 +25,7 @@ export default function Page() {
       <Header view_sidemenu={view_sidemenu} />
       <Feed dummy={dummy} />
       <Footer />
+      <New />
     </div>
   );
 }

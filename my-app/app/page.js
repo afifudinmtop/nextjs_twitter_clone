@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 
 export default function Page() {
   const masuk = () => {
@@ -7,6 +8,33 @@ export default function Page() {
 
   const register = () => {
     window.location.href = "/register/";
+  };
+
+  useEffect(() => {
+    cek_login();
+  }, []);
+
+  const cek_login = () => {
+    fetch("/api/auth/session", {
+      method: "GET",
+      cache: "no-store",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            "Network response was not ok: " + response.statusText
+          );
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data?.user?.isLoggedIn) {
+          return (window.location.href = "/home/");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
   };
 
   return (

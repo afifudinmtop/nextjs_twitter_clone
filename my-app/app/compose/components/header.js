@@ -1,6 +1,8 @@
 "use client";
 
-export default function Header() {
+export default function Header(props) {
+  const upload_data = props.upload_data;
+
   return (
     <div className="flex justify-between pt-[10px]">
       <div className="my-auto">
@@ -11,7 +13,11 @@ export default function Header() {
         <div className="text-[#1d9bf0] font-bold text-[14px] my-auto">
           Drafts
         </div>
-        <div className="bg-[#1d9bf0] text-white font-bold text-[14px] px-[16px] rounded-full py-[5px] my-auto ms-[24px]">
+
+        <div
+          onClick={upload_data}
+          className="bg-[#1d9bf0] text-white font-bold text-[14px] px-[16px] rounded-full py-[5px] my-auto ms-[24px]"
+        >
           Post
         </div>
       </div>

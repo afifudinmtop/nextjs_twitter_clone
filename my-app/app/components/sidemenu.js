@@ -27,7 +27,7 @@ export default function Sidemenu(props) {
         return response.json();
       })
       .then((data) => {
-        if (data.user.isLoggedIn) {
+        if (data?.user?.isLoggedIn) {
           set_username(data.user.username);
           set_nama(data.user.nama);
           set_gambar(data.user.gambar);

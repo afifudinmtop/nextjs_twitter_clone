@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2024 at 05:29 AM
+-- Generation Time: Mar 03, 2024 at 03:05 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `twitter.apip.dev`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post`
+--
+
+CREATE TABLE `post` (
+  `id` int(11) NOT NULL,
+  `uuid` text DEFAULT NULL,
+  `user` text DEFAULT NULL,
+  `gambar` text DEFAULT NULL,
+  `caption` text DEFAULT NULL,
+  `ts` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `post`
+--
+
+INSERT INTO `post` (`id`, `uuid`, `user`, `gambar`, `caption`, `ts`) VALUES
+(1, '08a0c609-ea3d-45b0-8c67-e23837e2cb3f', '1d3cb52d-6c3c-4ecb-9142-c30b4e13a00f', '08a0c609-ea3d-45b0-8c67-e23837e2cb3f.jpeg', 'tes 1', '2024-03-03 09:04:15');
 
 -- --------------------------------------------------------
 
@@ -50,6 +72,12 @@ INSERT INTO `user` (`id`, `uuid`, `nama`, `email`, `username`, `password`, `gamb
 --
 
 --
+-- Indexes for table `post`
+--
+ALTER TABLE `post`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -58,6 +86,12 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `post`
+--
+ALTER TABLE `post`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`

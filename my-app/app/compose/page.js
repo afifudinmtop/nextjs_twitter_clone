@@ -62,6 +62,10 @@ export default function page() {
   const upload_data = () => {
     const formData = new FormData();
 
+    if (caption.length < 1) {
+      return;
+    }
+
     // Append movie data to the form data
     formData.append("caption", caption);
 
@@ -72,9 +76,6 @@ export default function page() {
     if (fileInput.files.length > 0) {
       // Append the selected file to the form data
       formData.append("gambar", fileInput.files[0]);
-    } else {
-      console.error("Please select an image file.");
-      return;
     }
 
     fetch("/api/post/upload_gambar/", {

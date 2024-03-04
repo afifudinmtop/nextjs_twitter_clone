@@ -79,16 +79,78 @@ export default function Page() {
     set_bio(x);
   };
 
-  const handle_username = (x) => {
-    set_username(x);
+  const handle_avatar_change = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      const objectURL = URL.createObjectURL(file);
+      set_gambar(objectURL);
+    } else {
+      set_gambar("");
+    }
+  };
+
+  const handle_banner_change = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      const objectURL = URL.createObjectURL(file);
+      set_banner(objectURL);
+    } else {
+      set_banner("");
+    }
+  };
+
+  const upload_data = () => {
+    const formData = new FormData();
+
+    if (nama.length < 6) {
+      return;
+    }
+
+    // Append movie data to the form data
+    formData.append("nama", nama);
+    formData.append("bio", bio);
+
+    // Get the file input element
+    const file_input_avatar = document.getElementById("input_avatar");
+    const file_input_banner = document.getElementById("input_banner");
+
+    // Check if a file is selected
+    if (file_input_avatar.files.length > 0) {
+      // Append the selected file to the form data
+      formData.append("avatar", file_input_avatar.files[0]);
+    }
+
+    // Check if a file is selected
+    if (file_input_banner.files.length > 0) {
+      // Append the selected file to the form data
+      formData.append("banner", file_input_banner.files[0]);
+    }
+
+    fetch("/api/user/update_profil", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        window.location.href = `/user/${username}`;
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
   };
 
   return (
     <div>
-      <Header username={username} />
+      <Header username={username} upload_data={upload_data} />
 
       <div className="h-screen overflow-y-auto">
-        <Avatar gambar={gambar} banner={banner} />
+        <Avatar
+          gambar={gambar}
+          banner={banner}
+          handle_avatar_change={handle_avatar_change}
+          handle_banner_change={handle_banner_change}
+        />
         <Form
           nama={nama}
           handle_nama={handle_nama}

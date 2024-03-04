@@ -19,12 +19,18 @@ const login = async (req, res) => {
           if (resultx) {
             const gambar = results[0].gambar;
             const nama = results[0].nama;
+            const email = results[0].email;
+            const bio = results[0].bio;
+            const banner = results[0].banner;
 
             req.session.user = {
-              nama: nama,
-              gambar: gambar,
-              username: username,
               uuid: results[0].uuid,
+              nama: nama,
+              email: email,
+              username: username,
+              gambar: gambar,
+              bio: bio,
+              banner: banner,
               isLoggedIn: true,
             };
             return res.json({ pesan: "sukses!" });

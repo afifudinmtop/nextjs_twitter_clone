@@ -22,105 +22,99 @@ const get_user = async (req, res) => {
   }
 };
 
-const update_bio = async (req, res) => {
+const update_profil = async (req, res) => {
   try {
+    const user_uuid = req.session.user.uuid;
     const bio = req.body.bio;
-    const user_uuid = req.session.user.uuid;
+    const nama = req.body.nama;
 
-    // update data
+    // avatar
+    if (req.files && req.files.avatar) {
+      const avatarFile = req.files.avatar[0];
+      let resizedFilename1 = avatarFile.filename;
+
+      // Resize gambar
+      await sharp(avatarFile.path)
+        .resize(90, 90)
+        .toFile(`${uploadDir}/x-${resizedFilename1}`);
+
+      renameFile(
+        `${uploadDir}/x-${resizedFilename1}`,
+        `${uploadDir}/${resizedFilename1}`
+      );
+
+      let resizedFilename1x = `/uploads/${resizedFilename1}`;
+
+      // Simpan data ke MySQL
+      pool.query(
+        "UPDATE user SET gambar = ? WHERE uuid = ?",
+        [resizedFilename1x, user_uuid],
+        (error, results, fields) => {
+          if (error) {
+            return res.status(500).send("Server error");
+          }
+        }
+      );
+    }
+
+    // banner
+    if (req.files && req.files.banner) {
+      const bannerFile = req.files.banner[0];
+      let resizedFilename2 = bannerFile.filename;
+
+      // Resize gambar
+      await sharp(bannerFile.path)
+        .resize(375, 125)
+        .toFile(`${uploadDir}/x-${resizedFilename2}`);
+
+      renameFile(
+        `${uploadDir}/x-${resizedFilename2}`,
+        `${uploadDir}/${resizedFilename2}`
+      );
+
+      let resizedFilename2x = `/uploads/${resizedFilename2}`;
+
+      // Simpan data ke MySQL
+      pool.query(
+        "UPDATE user SET banner = ? WHERE uuid = ?",
+        [resizedFilename2x, user_uuid],
+        (error, results, fields) => {
+          if (error) {
+            return res.status(500).send("Server error");
+          }
+        }
+      );
+    }
+
+    // Simpan data ke MySQL
     pool.query(
-      "UPDATE user SET bio = ? WHERE uuid = ?",
-      [bio, user_uuid],
+      "UPDATE user SET bio = ?, nama = ? WHERE uuid = ?",
+      [bio, nama, user_uuid],
       (error, results, fields) => {
-        return res.json({ pesan: "sukses!" });
-      }
-    );
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Server error");
-  }
-};
-
-const update_username = async (req, res) => {
-  try {
-    const username = req.body.username;
-    const user_uuid = req.session.user.uuid;
-
-    // check existing username
-    pool.query(
-      "SELECT * FROM user WHERE username = ?",
-      [username],
-      (error, results, fields) => {
-        // update data
-        if (results.length < 1) {
-          pool.query(
-            "UPDATE user SET username = ? WHERE uuid = ?",
-            [username, user_uuid],
-            (error, results, fields) => {
-              return res.json({ pesan: "sukses!" });
-            }
-          );
+        if (error) {
+          return res.status(500).send("Server error");
         }
 
-        // kalau ada
-        else {
-          return res.json({ pesan: "username exist!" });
-        }
-      }
-    );
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Server error");
-  }
-};
-
-const update_name = async (req, res) => {
-  try {
-    const name = req.body.name;
-    const user_uuid = req.session.user.uuid;
-
-    // get data
-    pool.query(
-      "UPDATE user SET name = ? WHERE uuid = ?",
-      [name, user_uuid],
-      (error, results, fields) => {
-        return res.json({ pesan: "sukses!" });
-      }
-    );
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Server error");
-  }
-};
-
-const update_foto_profil = async (req, res) => {
-  try {
-    const file = req.file;
-    const resizedFilename = file.filename;
-    const user_uuid = req.session.user.uuid;
-
-    // Resize gambar
-    await sharp(file.path)
-      .resize(100, 100)
-      .toFile(`${uploadDir}/x-${resizedFilename}`);
-
-    renameFile(
-      `${uploadDir}/x-${resizedFilename}`,
-      `${uploadDir}/${resizedFilename}`
-    );
-
-    pool.query(
-      "SELECT * FROM user WHERE uuid = ?",
-      [user_uuid],
-      (error, results, fields) => {
-        let gambar_old = results[0].gambar;
-        deleteFile(`${uploadDir}/${gambar_old}`);
-
-        // update data
+        // update user session
         pool.query(
-          "UPDATE user SET gambar = ? WHERE uuid = ?",
-          [resizedFilename, user_uuid],
-          (error, results, fields) => {
+          "SELECT * FROM user WHERE uuid = ?",
+          [user_uuid],
+          (error2, results2, fields) => {
+            if (error2) {
+              return res.status(500).send("Server error");
+            }
+
+            req.session.user = {
+              uuid: results2[0].uuid,
+              nama: results2[0].nama,
+              email: results2[0].email,
+              username: results2[0].username,
+              gambar: results2[0].gambar,
+              bio: results2[0].bio,
+              banner: results2[0].banner,
+              isLoggedIn: true,
+            };
+
             return res.json({ pesan: "sukses!" });
           }
         );
@@ -134,8 +128,5 @@ const update_foto_profil = async (req, res) => {
 
 module.exports = {
   get_user,
-  update_bio,
-  update_username,
-  update_name,
-  update_foto_profil,
+  update_profil,
 };

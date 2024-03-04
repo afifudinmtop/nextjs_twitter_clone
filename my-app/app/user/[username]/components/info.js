@@ -9,6 +9,10 @@ export default function Info(props) {
     window.location.href = `/follower/${props.username}`;
   };
 
+  const setting = () => {
+    window.location.href = "/setting/";
+  };
+
   return (
     <div>
       <img src={props.banner} className="w-[full] h-[125px]" />
@@ -22,6 +26,7 @@ export default function Info(props) {
 
         {/* pribadi */}
         <div
+          onClick={setting}
           className={`text-[#0f1419] font-bold text-[15px] px-[16px] h-[34px] leading-[34px] rounded-full border-[#cfd9de] border-[0.8px] ${props.pribadi}`}
         >
           Edit profile

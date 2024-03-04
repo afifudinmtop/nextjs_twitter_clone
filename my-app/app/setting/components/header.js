@@ -18,6 +18,7 @@ export default function Header(props) {
         </div>
 
         <div
+          onClick={props.upload_data}
           className={`text-white bg-[#0f1419] font-bold text-[15px] px-[16px] h-[34px] leading-[34px] rounded-full border-[#cfd9de] border-[0.8px]`}
         >
           Save

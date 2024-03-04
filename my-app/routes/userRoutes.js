@@ -19,14 +19,14 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post("/get_user", userController.get_user);
-router.post("/update_bio", userController.update_bio);
-router.post("/update_username", userController.update_username);
-router.post("/update_name", userController.update_name);
 
 router.post(
-  "/update_foto_profil/",
-  upload.single("gambar"),
-  userController.update_foto_profil
+  "/update_profil",
+  upload.fields([
+    { name: "avatar", maxCount: 1 },
+    { name: "banner", maxCount: 1 },
+  ]),
+  userController.update_profil
 );
 
 module.exports = router;

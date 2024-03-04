@@ -20,6 +20,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.get("/feed", postController.feed);
+router.post("/feed_user", postController.feed_user);
 
 router.post(
   "/upload_gambar/",

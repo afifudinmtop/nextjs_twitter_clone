@@ -1,23 +1,14 @@
 "use client";
-import { useState, useEffect } from "react";
 
-import Sidemenu from "../components/sidemenu";
-import New from "../components/new";
+import { useState, useEffect } from "react";
 import Header from "./components/header";
 import Feed from "./components/feed";
-import Footer from "./components/footer";
+import Info from "./components/info";
 
-export default function Page() {
-  const [sidemenu, set_sidemenu] = useState("hidden");
+export default function Page({ params }) {
+  const username = params.username;
   const [feed, set_feed] = useState([]);
-
-  const view_sidemenu = () => {
-    set_sidemenu("");
-  };
-
-  const hide_sidemenu = () => {
-    set_sidemenu("hidden");
-  };
+  const [nama, set_nama] = useState("Afifudin Maarif");
 
   useEffect(() => {
     cek_login();
@@ -49,9 +40,13 @@ export default function Page() {
   };
 
   const get_feed = () => {
-    fetch("/api/post/feed", {
-      method: "GET",
+    fetch("/api/post/feed_user", {
+      method: "POST",
       cache: "no-store",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username }),
     })
       .then((response) => {
         if (!response.ok) {
@@ -70,12 +65,12 @@ export default function Page() {
   };
 
   return (
-    <div className="h-screen overflow-y-auto relative">
-      <Sidemenu visibility={sidemenu} hide_sidemenu={hide_sidemenu} />
-      <Header view_sidemenu={view_sidemenu} />
-      <Feed feed={feed} />
-      <Footer />
-      <New />
+    <div>
+      <Header nama={nama} jumlah_post="7" />
+      <div className="h-screen overflow-y-auto">
+        <Info />
+        <Feed feed={feed} />
+      </div>
     </div>
   );
 }

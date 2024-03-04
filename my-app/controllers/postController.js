@@ -39,6 +39,39 @@ const feed = async (req, res) => {
   }
 };
 
+const feed_user = async (req, res) => {
+  try {
+    const username = req.body.username;
+
+    // get data
+    pool.query(
+      `
+            SELECT 
+                post.id AS id, 
+                post.uuid AS post_uuid, 
+                post.gambar AS post_gambar, 
+                post.caption AS post_caption, 
+                post.ts AS post_ts, 
+                user.uuid AS user_uuid, 
+                user.username AS user_username, 
+                user.nama AS user_nama, 
+                user.gambar AS user_gambar 
+            FROM post 
+            JOIN user ON post.user = user.uuid 
+            WHERE user.username = ? 
+            ORDER BY id DESC;
+            `,
+      [username],
+      (error, results, fields) => {
+        res.json(results);
+      }
+    );
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+};
+
 const upload_gambar = async (req, res) => {
   try {
     const caption = req.body.caption;
@@ -83,4 +116,5 @@ const upload_gambar = async (req, res) => {
 module.exports = {
   upload_gambar,
   feed,
+  feed_user,
 };

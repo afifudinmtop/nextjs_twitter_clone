@@ -66,7 +66,9 @@ const register = async (req, res) => {
               email: email,
               username: username,
               password: hash,
-              gambar: "avatar.png",
+              gambar: "/avatar.png",
+              banner: "/banner.png",
+              bio: "",
             },
             (error, results, fields) => {
               if (error) throw error;

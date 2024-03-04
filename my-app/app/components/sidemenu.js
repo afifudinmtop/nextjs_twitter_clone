@@ -9,6 +9,9 @@ export default function Sidemenu(props) {
   const [nama, set_nama] = useState("");
   const [gambar, set_gambar] = useState("");
 
+  const [following, set_following] = useState("0");
+  const [follower, set_follower] = useState("0");
+
   useEffect(() => {
     cek_login();
   }, []);
@@ -31,6 +34,7 @@ export default function Sidemenu(props) {
           set_username(data.user.username);
           set_nama(data.user.nama);
           set_gambar(data.user.gambar);
+          get_stats(data.user.uuid);
         } else {
           return (window.location.href = "/login/");
         }
@@ -46,6 +50,40 @@ export default function Sidemenu(props) {
 
   const profile = () => {
     window.location.href = `/user/${username}`;
+  };
+
+  const get_stats = (x) => {
+    fetch("/api/get_stats", {
+      method: "POST",
+      cache: "no-store",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user_uuid: x }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            "Network response was not ok: " + response.statusText
+          );
+        }
+        return response.json();
+      })
+      .then((data) => {
+        set_following(data.following);
+        set_follower(data.follower);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
+  };
+
+  const followingx = () => {
+    window.location.href = `/following/${username}`;
+  };
+
+  const followerx = () => {
+    window.location.href = `/follower/${username}`;
   };
 
   return (
@@ -79,16 +117,20 @@ export default function Sidemenu(props) {
           {/* stats */}
           <div className="flex mt-[12px] gap-[20px]">
             {/* Following */}
-            <div className="flex">
-              <div className="font-bold text-[#0f1419] my-auto me-1">7</div>
+            <div onClick={followingx} className="flex">
+              <div className="font-bold text-[#0f1419] my-auto me-1">
+                {following}
+              </div>
               <div className="text-[#536471] text-[14px] my-auto">
                 Following
               </div>
             </div>
 
             {/* Followers */}
-            <div className="flex">
-              <div className="font-bold text-[#0f1419] my-auto me-1">12</div>
+            <div onClick={followerx} className="flex">
+              <div className="font-bold text-[#0f1419] my-auto me-1">
+                {follower}
+              </div>
               <div className="text-[#536471] text-[14px] my-auto">
                 Followers
               </div>

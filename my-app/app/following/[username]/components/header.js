@@ -23,7 +23,7 @@ export default function Header(props) {
         </div>
       </div>
 
-      <Options />
+      <Options username={props.username} />
     </div>
   );
 }

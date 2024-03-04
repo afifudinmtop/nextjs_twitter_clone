@@ -1,9 +1,13 @@
 "use client";
 
-export default function Options() {
+export default function Options(props) {
   const selected = "text-[#0f1419] text-[15px] font-bold text-center p-[14px]";
   const not_selected =
     "text-[#536471] text-[15px] font-medium text-center p-[14px]";
+
+  const follower = () => {
+    window.location.href = `/follower/${props.username}`;
+  };
 
   return (
     <div className="flex px-1">
@@ -14,7 +18,7 @@ export default function Options() {
       </div>
 
       {/* Followers */}
-      <div>
+      <div onClick={follower}>
         <div className={`${not_selected}`}>Followers</div>
         <div
           className={`bg-[#1d9bf0] w-full h-[4px] rounded-full hidden`}

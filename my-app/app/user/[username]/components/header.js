@@ -1,9 +1,14 @@
 "use client";
 
 export default function Header(props) {
+  const home = () => {
+    window.location.href = "/home/";
+  };
+
   return (
     <div className="flex px-[16px] py-[5px]">
       <img
+        onClick={home}
         src="/search/back.svg"
         className="w-[20px] h-[20px] my-auto me-[35px]"
       />

@@ -15,6 +15,9 @@ const cors = require("cors");
 const tesRoutes = require("./routes/tesRoutes");
 const authRoutes = require("./routes/authRoutes");
 const postRoutes = require("./routes/postRoutes");
+const userRoutes = require("./routes/userRoutes");
+const followRoutes = require("./routes/followRoutes");
+const statsRoutes = require("./routes/statsRoutes");
 
 nextApp.prepare().then(() => {
   const app = express();
@@ -37,6 +40,9 @@ nextApp.prepare().then(() => {
   app.use("/api/tes", tesRoutes);
   app.use("/api/auth", authRoutes);
   app.use("/api/post", postRoutes);
+  app.use("/api/user", userRoutes);
+  app.use("/api/follow", followRoutes);
+  app.use("/api/get_stats", statsRoutes);
 
   // Semua request lain akan di-handle oleh Next.js
   app.get("*", (req, res) => {

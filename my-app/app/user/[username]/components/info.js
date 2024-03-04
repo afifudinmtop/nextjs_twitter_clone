@@ -3,7 +3,7 @@
 export default function Info(props) {
   return (
     <div>
-      <img src="/dummy/banner.png" className="w-[full] h-[125px]" />
+      <img src={props.banner} className="w-[full] h-[125px]" />
 
       {/* avatar */}
       <div className="flex justify-between pt-[12px] px-[16px] mb-[-30px]">

@@ -10,7 +10,7 @@ const get_user = async (req, res) => {
     const username = req.body.username;
 
     pool.query(
-      "SELECT uuid, username, nama, bio, gambar FROM user WHERE username = ?",
+      "SELECT uuid, username, nama, bio, gambar, banner FROM user WHERE username = ?",
       [username],
       (error, results, fields) => {
         return res.json(results);

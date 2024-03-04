@@ -13,13 +13,14 @@ export default function Page({ params }) {
   const [user_uuid, set_user_uuid] = useState("");
   const [pribadi, set_pribadi] = useState("hidden");
   const [other, set_other] = useState("");
-  const [gambar, set_gambar] = useState("avatar.png");
+  const [gambar, set_gambar] = useState("/avatar.png");
 
   const [following, set_following] = useState("0");
   const [follower, set_follower] = useState("0");
 
   const [button_following, set_button_following] = useState("hidden");
   const [button_follow, set_button_follow] = useState("hidden");
+  const [banner, set_banner] = useState("/banner.png");
 
   useEffect(() => {
     cek_login();
@@ -111,6 +112,7 @@ export default function Page({ params }) {
         set_nama(data[0].nama);
         set_gambar(data[0].gambar);
         set_user_uuid(data[0].uuid);
+        set_banner(data[0].banner);
 
         if (x != "pribadi") {
           cek_follow(data[0].uuid);
@@ -194,6 +196,7 @@ export default function Page({ params }) {
           bio={bio}
           button_following={button_following}
           button_follow={button_follow}
+          banner={banner}
         />
         <Feed feed={feed} />
       </div>

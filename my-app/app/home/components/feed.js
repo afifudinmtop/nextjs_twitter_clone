@@ -35,7 +35,7 @@ export default function Feed(props) {
       {feed.map((feed) => (
         <div key={feed.post_uuid} className="border-b p-[15px] flex">
           <img
-            src={`/${feed.user_gambar}`}
+            src={feed.user_gambar}
             className="w-[38px] h-[38px] rounded-full me-[8px]"
           />
 

@@ -44,6 +44,10 @@ export default function Sidemenu(props) {
     window.location.href = "/api/auth/logout";
   };
 
+  const profile = () => {
+    window.location.href = `/user/${username}`;
+  };
+
   return (
     <div
       className={`${visibility} fixed top-0 left-[50%] translate-x-[-50%] h-screen w-screen lg:w-[375px] z-[100]`}
@@ -93,7 +97,7 @@ export default function Sidemenu(props) {
         </div>
 
         {/* Profile */}
-        <div className="flex p-[16px]">
+        <div onClick={profile} className="flex p-[16px]">
           <img
             src="/sidemenu/profile.svg"
             className="w-[24px] h-[24px] me-[24px] my-auto"

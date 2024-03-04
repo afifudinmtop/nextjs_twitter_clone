@@ -1,6 +1,14 @@
 "use client";
 
 export default function Info(props) {
+  const following = () => {
+    window.location.href = `/following/${props.username}`;
+  };
+
+  const follower = () => {
+    window.location.href = `/follower/${props.username}`;
+  };
+
   return (
     <div>
       <img src={props.banner} className="w-[full] h-[125px]" />
@@ -8,7 +16,7 @@ export default function Info(props) {
       {/* avatar */}
       <div className="flex justify-between pt-[12px] px-[16px] mb-[-30px]">
         <img
-          src="/avatar.png"
+          src={props.gambar}
           className="rounded-full w-[81px] h-[81px] translate-y-[-50px]"
         />
 
@@ -47,13 +55,13 @@ export default function Info(props) {
 
         <div className="flex text-[14px] gap-x-[15px]">
           {/* Following */}
-          <div>
+          <div onClick={following}>
             <span className="font-bold me-[3px]">{props.following}</span>
             <span>Following</span>
           </div>
 
           {/* Followers */}
-          <div>
+          <div onClick={follower}>
             <span className="font-bold me-[3px]">{props.follower}</span>
             <span>Followers</span>
           </div>

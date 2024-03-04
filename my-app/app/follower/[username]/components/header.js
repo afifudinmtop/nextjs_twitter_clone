@@ -4,7 +4,7 @@ import Options from "./options";
 
 export default function Header(props) {
   const home = () => {
-    window.location.href = "/home/";
+    window.location.href = `/user/${props.username}`;
   };
 
   return (

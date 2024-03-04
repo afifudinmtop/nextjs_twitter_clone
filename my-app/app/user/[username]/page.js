@@ -20,6 +20,7 @@ export default function Page({ params }) {
 
   const [button_following, set_button_following] = useState("hidden");
   const [button_follow, set_button_follow] = useState("hidden");
+
   const [banner, set_banner] = useState("/banner.png");
 
   useEffect(() => {
@@ -197,6 +198,7 @@ export default function Page({ params }) {
           button_following={button_following}
           button_follow={button_follow}
           banner={banner}
+          gambar={gambar}
         />
         <Feed feed={feed} />
       </div>

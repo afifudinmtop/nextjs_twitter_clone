@@ -8,7 +8,7 @@ export default function Header(props) {
       <div className="flex">
         <img
           onClick={view_sidemenu}
-          src="/home/avatar.jpg"
+          src={props.foto_profil}
           className="w-[30px] h-[30px] rounded-full my-auto"
         />
         <div className="text-[17px] font-bold ms-[20px] my-auto">Messages</div>

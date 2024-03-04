@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 
 export default function Sidemenu(props) {
+  let set_foto_profilx = props.set_foto_profilx;
   let visibility = props.visibility;
   let hide_sidemenu = props.hide_sidemenu;
 
@@ -35,6 +36,7 @@ export default function Sidemenu(props) {
           set_nama(data.user.nama);
           set_gambar(data.user.gambar);
           get_stats(data.user.uuid);
+          set_foto_profilx(data.user.gambar);
         } else {
           return (window.location.href = "/login/");
         }

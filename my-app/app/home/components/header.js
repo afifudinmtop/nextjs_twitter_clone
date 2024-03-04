@@ -7,7 +7,7 @@ export default function Header(props) {
     <div className="fixed bg-white border-b top-0 left-[50%] translate-x-[-50%] w-screen lg:w-[375px] flex justify-between p-[15px]">
       <img
         onClick={view_sidemenu}
-        src="/home/avatar.jpg"
+        src={props.foto_profil}
         className="w-[30px] h-[30px] rounded-full my-auto"
       />
       <img src="/home/x.png" className="w-[20px] h-[20px] my-auto" />

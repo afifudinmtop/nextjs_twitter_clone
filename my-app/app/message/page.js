@@ -12,6 +12,7 @@ export default function Page() {
   const [foto_profil, set_foto_profil] = useState("/avatar.png");
 
   const [list_dm, set_list_dm] = useState([]);
+  const [list_dm_fix, set_list_dm_fix] = useState([]);
 
   useEffect(() => {
     get_list_dm();
@@ -44,10 +45,26 @@ export default function Page() {
       })
       .then((data) => {
         set_list_dm(data);
+        set_list_dm_fix(data);
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
       });
+  };
+
+  const handle_set_terms = (x) => {
+    let hasil = filterByKeyword(x);
+    set_list_dm(hasil);
+  };
+
+  const filterByKeyword = (keyword) => {
+    return list_dm_fix.filter((item) => {
+      return (
+        item.username.includes(keyword) ||
+        item.nama.includes(keyword) ||
+        item.pesan.includes(keyword)
+      );
+    });
   };
 
   return (
@@ -60,8 +77,9 @@ export default function Page() {
       <Header view_sidemenu={view_sidemenu} foto_profil={foto_profil} />
 
       <div className="pt-[75px] px-[12px]">
-        <Search />
+        <Search handle_set_terms={handle_set_terms} />
       </div>
+
       <List list_dm={list_dm} />
       <Footer />
     </div>

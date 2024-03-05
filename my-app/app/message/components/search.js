@@ -1,6 +1,6 @@
 "use client";
 
-export default function Search() {
+export default function Search(props) {
   return (
     <div className="relative">
       <img
@@ -9,6 +9,7 @@ export default function Search() {
       />
 
       <input
+        onChange={(e) => props.handle_set_terms(e.target.value)}
         type="text"
         placeholder="Search"
         className="w-full text-[15px] rounded-full py-[8px] pl-12 pr-4 text-gray-500 border outline-none focus:bg-white focus:border-sky-600"

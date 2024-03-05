@@ -1,4 +1,4 @@
-// process.env.NODE_ENV = "production";
+process.env.NODE_ENV = "production";
 
 const express = require("express");
 const session = require("express-session");

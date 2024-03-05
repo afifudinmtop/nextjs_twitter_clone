@@ -31,18 +31,30 @@ export default function Feed(props) {
     }
   };
 
+  const user_profil = (x) => {
+    window.location.href = `/user/${x}`;
+  };
+
   return (
     <div className={`pt-[120px] pb-[50px] ${visibility}`}>
       {list.map((item) => (
         <div key={item.post_uuid} className="border-b p-[15px] flex">
           <img
+            onClick={() => {
+              user_profil(item.user_username);
+            }}
             src={item.user_gambar}
             className="w-[38px] h-[38px] rounded-full me-[8px]"
           />
 
           <div className="w-full">
             {/* header */}
-            <div className="flex justify-between w-full">
+            <div
+              onClick={() => {
+                user_profil(item.user_username);
+              }}
+              className="flex justify-between w-full"
+            >
               <div className="flex flex-wrap text-[14px] gap-x-2 w-full">
                 <div className="font-bold text-[#000]">{item.user_nama}</div>
                 <div className="text-[#536471]">{`@${item.user_username}`}</div>

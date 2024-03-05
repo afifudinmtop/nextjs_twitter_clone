@@ -31,21 +31,27 @@ Untuk menggunakan proyek ini, ikuti langkah-langkah berikut:
    npm install
    ```
 
-4. **Build Aplikasi**
+4. **Import Database**
+   Import database twitter_apip_dev.sql
+
+5. **Sesuaikan ENV Database**
+   /nextjs_twitter_clone/my-app/utils/mysql.js
+
+6. **Build Aplikasi**
    Build aplikasi untuk produksi dengan perintah:
 
    ```bash
    npm run build
    ```
 
-5. **Menjalankan Aplikasi**
+7. **Menjalankan Aplikasi**
    Setelah build selesai, jalankan aplikasi dengan:
 
    ```bash
    node server.js
    ```
 
-6. **Akses Aplikasi**
+8. **Akses Aplikasi**
    Buka browser dan akses http://localhost:8851 untuk melihat aplikasi berjalan.
 
 ## Kontribusi

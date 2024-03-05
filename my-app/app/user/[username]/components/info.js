@@ -63,41 +63,57 @@ export default function Info(props) {
       });
   };
 
+  const pesan = () => {
+    window.location.href = `/message/${props.user_uuid}`;
+  };
+
   return (
     <div>
       <img src={props.banner} className="w-[full] h-[125px]" />
 
       {/* avatar */}
       <div className="flex justify-between pt-[12px] px-[16px] mb-[-30px]">
+        {/* avatar */}
         <img
           src={props.gambar}
           className="rounded-full w-[81px] h-[81px] translate-y-[-50px]"
         />
 
-        {/* pribadi */}
-        <div
-          onClick={setting}
-          className={`text-[#0f1419] font-bold text-[15px] px-[16px] h-[34px] leading-[34px] rounded-full border-[#cfd9de] border-[0.8px] ${props.pribadi}`}
-        >
-          Edit profile
-        </div>
-
-        {/* other */}
-        <div className={`${props.other}`}>
-          {/* follow */}
+        {/* kanan */}
+        <div className="flex">
+          {/* pesan */}
           <div
-            onClick={go_follow}
-            className={`text-white bg-[#0f1419] font-bold text-[15px] px-[16px] h-[34px] leading-[34px] rounded-full border-[#cfd9de] border-[0.8px] ${props.button_follow}`}
+            onClick={pesan}
+            className="h-[34px] px-[7px] border-[0.8px] rounded-full border-[#cfd9de] flex me-[8px]"
           >
-            Follow
+            <img src="/user/pesan.svg" className="w-[20px] h-[20px] my-auto" />
           </div>
 
-          {/* Following */}
+          {/* pribadi */}
           <div
-            onClick={go_unfollow}
-            className={`text-[#0f1419] font-bold text-[15px] px-[16px] h-[34px] leading-[34px] rounded-full border-[#cfd9de] border-[0.8px] ${props.button_following}`}
+            onClick={setting}
+            className={`text-[#0f1419] font-bold text-[15px] px-[16px] h-[34px] leading-[34px] rounded-full border-[#cfd9de] border-[0.8px] ${props.pribadi}`}
           >
-            Following
+            Edit profile
+          </div>
+
+          {/* other */}
+          <div className={`${props.other}`}>
+            {/* follow */}
+            <div
+              onClick={go_follow}
+              className={`text-white bg-[#0f1419] font-bold text-[15px] px-[16px] h-[34px] leading-[34px] rounded-full border-[#cfd9de] border-[0.8px] ${props.button_follow}`}
+            >
+              Follow
+            </div>
+
+            {/* Following */}
+            <div
+              onClick={go_unfollow}
+              className={`text-[#0f1419] font-bold text-[15px] px-[16px] h-[34px] leading-[34px] rounded-full border-[#cfd9de] border-[0.8px] ${props.button_following}`}
+            >
+              Following
+            </div>
           </div>
         </div>
       </div>

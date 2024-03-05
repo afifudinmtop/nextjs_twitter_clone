@@ -1,6 +1,6 @@
 "use client";
 
-export default function Header() {
+export default function Header(props) {
   const back = () => {
     window.location.href = "/message/";
   };
@@ -14,7 +14,7 @@ export default function Header() {
           className="w-[20px] h-[20px] rounded-full my-auto"
         />
         <div className="text-[17px] font-bold ms-[20px] my-auto">
-          Biznet Home
+          {props.username}
         </div>
       </div>
 

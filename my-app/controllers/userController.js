@@ -22,6 +22,23 @@ const get_user = async (req, res) => {
   }
 };
 
+const get_user2 = async (req, res) => {
+  try {
+    const uuid_user = req.body.uuid_user;
+
+    pool.query(
+      "SELECT uuid, username, nama, bio, gambar, banner FROM user WHERE uuid = ?",
+      [uuid_user],
+      (error, results, fields) => {
+        return res.json(results);
+      }
+    );
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+};
+
 const update_profil = async (req, res) => {
   try {
     const user_uuid = req.session.user.uuid;
@@ -147,4 +164,5 @@ module.exports = {
   get_user,
   update_profil,
   search,
+  get_user2,
 };

@@ -33,7 +33,7 @@ nextApp.prepare().then(() => {
       secret: "twitter", // Ganti dengan rahasia sesi yang sebenarnya
       resave: false,
       saveUninitialized: true,
-      cookie: { secure: !dev }, // Gunakan 'secure: true' di produksi dengan HTTPS
+      cookie: { secure: false },
     })
   );
 

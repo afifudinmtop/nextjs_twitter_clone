@@ -1,10 +1,20 @@
 "use client";
 
 export default function People(props) {
+  const user_profil = (x) => {
+    window.location.href = `/user/${x}`;
+  };
+
   return (
     <div className={`pt-[120px] pb-[50px]`}>
       {props.list.map((item) => (
-        <div key={item.uuid} className="p-[15px] flex">
+        <div
+          key={item.uuid}
+          onClick={() => {
+            user_profil(item.username);
+          }}
+          className="p-[15px] flex"
+        >
           <img
             src={`${item.gambar}`}
             className="w-[38px] h-[38px] rounded-full me-[8px]"

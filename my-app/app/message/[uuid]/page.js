@@ -71,11 +71,11 @@ export default function Page({ params }) {
       {/* chat */}
       <div className="pt-[65px]">
         {data_chat.map((item) => (
-          <Chat item={item} />
+          <Chat key={item.uuid_pesan} item={item} />
         ))}
       </div>
 
-      <Input />
+      <Input uuid_user={uuid_user} />
     </div>
   );
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2024 at 08:22 PM
+-- Generation Time: Mar 05, 2024 at 05:54 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,6 +24,31 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `dm`
+--
+
+CREATE TABLE `dm` (
+  `id` int(11) NOT NULL,
+  `uuid_pesan` text DEFAULT NULL,
+  `uuid_pengirim` text DEFAULT NULL,
+  `uuid_penerima` text DEFAULT NULL,
+  `pesan` text DEFAULT NULL,
+  `ts` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dm`
+--
+
+INSERT INTO `dm` (`id`, `uuid_pesan`, `uuid_pengirim`, `uuid_penerima`, `pesan`, `ts`) VALUES
+(1, '1e35e694-85e8-460f-95ae-c2824d6668b0', 'b2f902be-0db0-40b7-b893-1853b240badb', '7ab524bc-983c-440f-bd3a-0186fa2cc8cb', 'halo bang', '2024-03-05 10:28:11'),
+(2, '3df31c59-869b-43ab-b868-4315fbd330d9', '7ab524bc-983c-440f-bd3a-0186fa2cc8cb', 'b2f902be-0db0-40b7-b893-1853b240badb', 'halo juga bos', '2024-03-05 10:32:50'),
+(3, 'b384b308-616e-475a-bd94-6f25a2a484a4', 'b2f902be-0db0-40b7-b893-1853b240badb', '66a4619e-f1c2-4a82-84f3-7994b77812cd', 'cek', '2024-03-05 10:53:38'),
+(4, '3623e654-4dc3-4f47-ad65-b0114d14ec49', 'b2f902be-0db0-40b7-b893-1853b240badb', '7ab524bc-983c-440f-bd3a-0186fa2cc8cb', 'mantab', '2024-03-05 11:23:26');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `follow`
 --
 
@@ -32,6 +57,14 @@ CREATE TABLE `follow` (
   `user1` text DEFAULT NULL,
   `user2` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `follow`
+--
+
+INSERT INTO `follow` (`id`, `user1`, `user2`) VALUES
+(1, 'b2f902be-0db0-40b7-b893-1853b240badb', '7ab524bc-983c-440f-bd3a-0186fa2cc8cb'),
+(3, 'b2f902be-0db0-40b7-b893-1853b240badb', '66a4619e-f1c2-4a82-84f3-7994b77812cd');
 
 -- --------------------------------------------------------
 
@@ -75,7 +108,8 @@ INSERT INTO `post` (`id`, `uuid`, `user`, `gambar`, `caption`, `ts`) VALUES
 (20, '6c63c451-8d14-425c-846f-6c4f0cda9aac', '66a4619e-f1c2-4a82-84f3-7994b77812cd', '6c63c451-8d14-425c-846f-6c4f0cda9aac.jpeg', 'Mendaki gunung adalah pengalaman yang tak terlupakan.', '2024-03-05 02:21:19'),
 (21, 'e2050bc9-d6f3-4aca-9097-ad7a935fec3b', '66a4619e-f1c2-4a82-84f3-7994b77812cd', '', 'Mencoba makanan baru di restoran terkenal.', '2024-03-05 02:21:29'),
 (22, 'bef16414-f0a8-4b0f-8dd2-e2e90dc1e89b', '66a4619e-f1c2-4a82-84f3-7994b77812cd', '', 'Berolahraga adalah kunci untuk hidup sehat.', '2024-03-05 02:21:35'),
-(23, '5729f19c-9860-41ab-9b2b-21fa917f29ff', '66a4619e-f1c2-4a82-84f3-7994b77812cd', '', 'Menikmati keindahan alam di hutan.', '2024-03-05 02:21:46');
+(23, '5729f19c-9860-41ab-9b2b-21fa917f29ff', '66a4619e-f1c2-4a82-84f3-7994b77812cd', '', 'Menikmati keindahan alam di hutan.', '2024-03-05 02:21:46'),
+(24, '68653106-2d9e-4045-ace9-4404af334c99', '7ab524bc-983c-440f-bd3a-0186fa2cc8cb', '68653106-2d9e-4045-ace9-4404af334c99.jpeg', 'meong', '2024-03-05 11:53:51');
 
 -- --------------------------------------------------------
 
@@ -109,6 +143,12 @@ INSERT INTO `user` (`id`, `uuid`, `nama`, `email`, `username`, `password`, `gamb
 --
 
 --
+-- Indexes for table `dm`
+--
+ALTER TABLE `dm`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `follow`
 --
 ALTER TABLE `follow`
@@ -131,16 +171,22 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `dm`
+--
+ALTER TABLE `dm`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `user`

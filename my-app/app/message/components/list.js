@@ -1,34 +1,59 @@
 "use client";
 
 export default function List(props) {
-  const dummy = props.dummy;
-
   const dm = (uuid) => {
     window.location.href = `/message/${uuid}`;
   };
 
+  const timeAgo = (timestamp) => {
+    const now = new Date();
+    const past = new Date(timestamp);
+    const msPerMinute = 60 * 1000;
+    const msPerHour = msPerMinute * 60;
+    const msPerDay = msPerHour * 24;
+    const elapsed = now - past;
+
+    if (elapsed < msPerMinute) {
+      return Math.round(elapsed / 1000) + " s";
+    } else if (elapsed < msPerHour) {
+      return Math.round(elapsed / msPerMinute) + " m";
+    } else if (elapsed < msPerDay) {
+      return Math.round(elapsed / msPerHour) + " h";
+    } else if (elapsed < msPerDay * 7) {
+      return Math.round(elapsed / msPerDay) + " d";
+    } else {
+      return (
+        past.getDate() +
+        " " +
+        past.toLocaleString("default", { month: "long" }) +
+        " " +
+        past.getFullYear()
+      );
+    }
+  };
+
   return (
-    <div className="">
-      {dummy.map((dummy) => (
+    <div>
+      {props.list_dm.map((item) => (
         <div
-          key={dummy.uuid}
+          key={item.uuid}
           onClick={() => {
-            dm(dummy.uuid);
+            dm(item.uuid);
           }}
           className="border-b p-[15px] flex"
         >
           <img
-            src={`/dummy/${dummy.avatar}`}
+            src={item.gambar}
             className="w-[38px] h-[38px] rounded-full me-[8px]"
           />
 
-          <div>
+          <div className="w-full">
             {/* header */}
             <div className="flex justify-between">
               <div className="flex flex-wrap text-[14px] gap-x-2">
-                <div className="font-bold text-[#000]">{dummy.name}</div>
-                <div className="text-[#536471]">{`@${dummy.username}`}</div>
-                <div className="text-[#536471]">{dummy.ts}</div>
+                <div className="font-bold text-[#000]">{item.nama}</div>
+                <div className="text-[#536471]">{`@${item.username}`}</div>
+                <div className="text-[#536471]">{timeAgo(item.ts)}</div>
               </div>
 
               <img src="/home/more.svg" className="w-[18px] h-[18px] my-auto" />
@@ -36,7 +61,7 @@ export default function List(props) {
 
             {/* message */}
             <div className="text-[14px] text-[#0f1419] leading-[19px]">
-              {dummy.message}
+              {item.pesan}
             </div>
           </div>
         </div>

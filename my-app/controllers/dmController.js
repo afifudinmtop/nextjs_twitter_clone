@@ -72,8 +72,8 @@ const list_dm = async (req, res) => {
       SELECT 
       u.uuid, 
       u.username, 
+      u.nama, 
       u.gambar 
-
       FROM (
         SELECT DISTINCT
           CASE
@@ -86,14 +86,44 @@ const list_dm = async (req, res) => {
       JOIN user u ON u.uuid = lawan_bicara.uuid_lawan_bicara;
       `,
       [user, user],
-      (error, results, fields) => {
-        if (results.length < 1) {
-          return res.json([]);
+      async (error, results, fields) => {
+        if (error) {
+          console.error(error);
+          return res.status(500).send("Server error");
         }
 
-        // data exist
-        else {
-          return res.json(results);
+        if (results.length < 1) {
+          return res.json([]);
+        } else {
+          try {
+            // Using Promise.all to wait for all messages to be fetched
+            const messages = await Promise.all(
+              results.map(
+                (user2) =>
+                  new Promise((resolve, reject) => {
+                    pool.query(
+                      `SELECT * FROM dm WHERE (uuid_pengirim = ? AND uuid_penerima = ?) OR (uuid_pengirim = ? AND uuid_penerima = ?) ORDER BY ID DESC LIMIT 1;`,
+                      [user, user2.uuid, user2.uuid, user],
+                      (error2, results2, fields2) => {
+                        if (error2) {
+                          return reject(error2);
+                        }
+                        resolve({
+                          ...user2,
+                          pesan: results2[0]?.pesan,
+                          ts: results2[0]?.ts,
+                        });
+                      }
+                    );
+                  })
+              )
+            );
+
+            return res.json(messages);
+          } catch (error) {
+            console.error(error);
+            return res.status(500).send("Server error");
+          }
         }
       }
     );

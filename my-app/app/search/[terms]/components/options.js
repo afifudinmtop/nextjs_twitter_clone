@@ -8,14 +8,14 @@ export default function Options(props) {
   const not_selected =
     "text-[#536471] text-[15px] font-medium text-center p-[14px]";
 
-  const [top, set_top] = useState("");
-  const [latest, set_latest] = useState("invisible");
+  const [top, set_top] = useState("invisible");
+  const [latest, set_latest] = useState("");
   const [people, set_people] = useState("invisible");
   const [media, set_media] = useState("invisible");
   const [lists, set_lists] = useState("invisible");
 
-  const [top_text, set_top_text] = useState(selected);
-  const [latest_text, set_latest_text] = useState(not_selected);
+  const [top_text, set_top_text] = useState(not_selected);
+  const [latest_text, set_latest_text] = useState(selected);
   const [people_text, set_people_text] = useState(not_selected);
   const [media_text, set_media_text] = useState(not_selected);
   const [lists_text, set_lists_text] = useState(not_selected);

@@ -4,7 +4,7 @@ export default function Trends(props) {
   const dummy = props.dummy;
 
   const cari = (x) => {
-    window.location.href = "/search/";
+    window.location.href = `/search/${x}`;
   };
 
   return (

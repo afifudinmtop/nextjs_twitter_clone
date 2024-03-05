@@ -18,7 +18,7 @@ export default function Header(props) {
           src="/search/back.svg"
           className="w-[20px] h-[20px] my-auto"
         />
-        <Search />
+        <Search terms={props.terms} hadle_set_terms={props.hadle_set_terms} />
         <img src="/search/more.svg" className="w-[20px] h-[20px] my-auto" />
       </div>
 

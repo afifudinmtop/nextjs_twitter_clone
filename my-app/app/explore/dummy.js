@@ -1,27 +1,27 @@
 const dummy = [
   {
     uuid: "uuid_1",
-    trend: "Karina",
+    trend: "cuaca",
     count: "46K posts",
   },
   {
     uuid: "uuid_2",
-    trend: "#ShopeeGaransiTepatWaktu",
+    trend: "masak",
     count: "13.9K posts",
   },
   {
     uuid: "uuid_3",
-    trend: "Dante",
+    trend: "alam",
     count: "38.5K posts",
   },
   {
     uuid: "uuid_4",
-    trend: "#HakANGKETvsHakRAKYAT",
+    trend: "cerah",
     count: "3,714 posts",
   },
   {
     uuid: "uuid_5",
-    trend: "KitaYgMILIH BukanDIPILIHKAN",
+    trend: "kesehatan",
     count: "3,626 posts",
   },
 ];

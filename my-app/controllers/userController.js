@@ -126,7 +126,25 @@ const update_profil = async (req, res) => {
   }
 };
 
+const search = async (req, res) => {
+  try {
+    const terms = "%" + req.body.terms + "%";
+
+    pool.query(
+      "SELECT uuid, username, nama, bio, gambar FROM user WHERE username LIKE ? OR nama LIKE ?",
+      [terms, terms],
+      (error, results, fields) => {
+        return res.json(results);
+      }
+    );
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+};
+
 module.exports = {
   get_user,
   update_profil,
+  search,
 };

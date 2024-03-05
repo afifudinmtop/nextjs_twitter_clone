@@ -113,8 +113,41 @@ const upload_gambar = async (req, res) => {
   }
 };
 
+const search = async (req, res) => {
+  try {
+    const terms = "%" + req.body.terms + "%";
+
+    pool.query(
+      `
+      SELECT 
+          post.id AS id, 
+          post.uuid AS post_uuid, 
+          post.gambar AS post_gambar, 
+          post.caption AS post_caption, 
+          post.ts AS post_ts, 
+          user.uuid AS user_uuid, 
+          user.username AS user_username, 
+          user.nama AS user_nama, 
+          user.gambar AS user_gambar 
+      FROM post 
+      JOIN user ON post.user = user.uuid 
+      WHERE post.caption LIKE ? 
+      ORDER BY id DESC;
+      `,
+      [terms],
+      (error, results, fields) => {
+        return res.json(results);
+      }
+    );
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+};
+
 module.exports = {
   upload_gambar,
   feed,
   feed_user,
+  search,
 };

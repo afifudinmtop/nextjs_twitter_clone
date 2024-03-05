@@ -21,6 +21,7 @@ const upload = multer({ storage: storage });
 
 router.get("/feed", postController.feed);
 router.post("/feed_user", postController.feed_user);
+router.post("/search", postController.search);
 
 router.post(
   "/upload_gambar/",

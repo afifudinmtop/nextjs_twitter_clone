@@ -13,6 +13,56 @@ export default function Info(props) {
     window.location.href = "/setting/";
   };
 
+  const go_follow = () => {
+    fetch("/api/follow/go_follow", {
+      method: "POST",
+      cache: "no-store",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user_uuid: props.user_uuid }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            "Network response was not ok: " + response.statusText
+          );
+        }
+        return response.json();
+      })
+      .then((data) => {
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
+  };
+
+  const go_unfollow = () => {
+    fetch("/api/follow/go_unfollow", {
+      method: "POST",
+      cache: "no-store",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user_uuid: props.user_uuid }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            "Network response was not ok: " + response.statusText
+          );
+        }
+        return response.json();
+      })
+      .then((data) => {
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
+  };
+
   return (
     <div>
       <img src={props.banner} className="w-[full] h-[125px]" />
@@ -36,6 +86,7 @@ export default function Info(props) {
         <div className={`${props.other}`}>
           {/* follow */}
           <div
+            onClick={go_follow}
             className={`text-white bg-[#0f1419] font-bold text-[15px] px-[16px] h-[34px] leading-[34px] rounded-full border-[#cfd9de] border-[0.8px] ${props.button_follow}`}
           >
             Follow
@@ -43,6 +94,7 @@ export default function Info(props) {
 
           {/* Following */}
           <div
+            onClick={go_unfollow}
             className={`text-[#0f1419] font-bold text-[15px] px-[16px] h-[34px] leading-[34px] rounded-full border-[#cfd9de] border-[0.8px] ${props.button_following}`}
           >
             Following

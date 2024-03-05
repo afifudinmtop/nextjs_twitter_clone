@@ -188,6 +188,7 @@ export default function Page({ params }) {
       <Header nama={nama} jumlah_post={feed.length} />
       <div className="h-screen overflow-y-auto">
         <Info
+          user_uuid={user_uuid}
           pribadi={pribadi}
           other={other}
           following={following}

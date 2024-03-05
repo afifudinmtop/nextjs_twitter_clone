@@ -5,7 +5,7 @@ export default function Search() {
   const [terms, set_terms] = useState("");
 
   const searchx = () => {
-    if (terms.length > 1) {
+    if (terms.length > 0) {
       window.location.href = `/search/${terms}`;
     }
   };

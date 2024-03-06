@@ -1,6 +1,6 @@
 # Twitter Clone NextJS
 
-![Screenshot Aplikasi](ss.png =100x)
+<img src="ss.png" alt="Screenshot Aplikasi" width="100"/>
 
 ## Tech Stack
 

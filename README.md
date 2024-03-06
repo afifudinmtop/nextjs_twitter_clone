@@ -1,5 +1,7 @@
 # Twitter Clone NextJS
 
+![Screenshot Aplikasi](ss.png)
+
 ## Tech Stack
 
 - **Front End**: NextJS + ReactJS

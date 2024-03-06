@@ -1,4 +1,4 @@
-const uploadDir = "./public/uploads";
+const uploadDir = "./uploads";
 
 module.exports = {
   uploadDir,

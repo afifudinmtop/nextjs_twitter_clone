@@ -26,6 +26,7 @@ nextApp.prepare().then(() => {
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
   app.use(cors());
+  app.use("/uploads", express.static("uploads"));
 
   // Konfigurasi express-session
   app.use(
